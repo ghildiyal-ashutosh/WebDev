@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <title>User-Admin</title>
 
-  <!--
+
   <link rel="stylesheet" href=
             "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href=
             "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link href="user-admin.style.client.css" rel="stylesheet" />
+
+   <!--  <link href="user-admin.style.client.css" rel="stylesheet" />  -->
+
+    <script src = "../../models/user.model.client.js"></script>
+
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../services/user.service.client.js"></script>
-    -->
+
+    <script src="../../services/user.service.client.js"></script>
+
 
     <script src="user-admin.controller.client.js"></script>
 
@@ -82,8 +87,24 @@
 
 
     </thead>
-    <tbody>
+    <tbody class="wbdv-tbody">
+    <tr class="wbdv-template wbdv-user wbdv-hidden">
+        <td class="wbdv-username">ada</td>
+        <td>&nbsp;</td>
+        <td class="wbdv-first-name">Ada</td>
+        <td class="wbdv-last-name">Lovelace</td>
+        <td class="wbdv-role">FACULTY</td>
+        <td class="wbdv-actions">
+        <span class="float-right">
+          <i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
+          <i id="wbdv-edit" class="fa-2x fa fa-pencil wbdv-edit"></i>
+        </span>
+        </td>
+    </tr>
     </tbody>
+
+
+</table>
 
 
 </body>
