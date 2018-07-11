@@ -1,14 +1,14 @@
 function UserServiceClient() {
     this.createUser = createUser;
     this.findAllUsers = findAllUsers;
-   // this.findUserById = findUserById;
-   // this.deleteUser = deleteUser;
-   // this.updateUser = updateUser;
+    this.findUserById = findUserById;
+    this.deleteUser = deleteUser;
+    this.updateUser = updateUser;
     this.url = 'http://localhost:8080/api/user';
     var self = this;
 
 
-    function createUser(user, callback)
+    function createUser(user)
     {
 
         return fetch (self.url,
@@ -20,7 +20,7 @@ function UserServiceClient() {
                     'content-type' : 'application/json'
                 }
         }).then(function (response){
-           return (response.json);
+           return response.json();
         });
     }
 
@@ -35,7 +35,35 @@ function UserServiceClient() {
      }
 
 
-   // function findUserById(userId, callback) { }
-   // function updateUser(userId, user, callback) { }
-   // function deleteUser(userId, callback) { }
+     function findUserById(userId)
+     {
+         return fetch (self.url+'/'+userId )
+             .then(function (response)
+             {
+                 return response.json();
+             });
+     }
+
+   function updateUser(userId, user)
+   {
+       return fetch (self.url+'/'+userId,
+           {
+               method : 'put',
+               body : JSON.stringify(user),
+               headers:
+                   { 'content-type' : 'application/json'}
+
+           }).then (function (response)
+       {
+           return response.json();
+       });
+   }
+     function deleteUser(userId, callback)
+     {
+         return fetch (self.url + '/' + userId,
+             {
+                 method : 'delete'
+
+             });
+     }
 }
