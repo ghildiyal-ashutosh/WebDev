@@ -19,6 +19,7 @@
         $searchBtn =$ ('.wbdv-search');
         $createBtn.click(checkUsername);
         $updateBtn.click(check);
+        $searchBtn.click(searchByUsername);
 
 
       findAllUsers();
@@ -145,16 +146,19 @@
 
     function loadUser(user)
     {
-        console.log(user);
-        uid = user.id;
-        $('#usernameFld').val(user.username);
-        $('#firstNameFld').val(user.firstName);
-        $('#lastNameFld').val(user.lastName);
-        $('#roleFld').val(user.role);
-        $('#passwordFld').val(user.password);
+        if (user.firstName == "Negative")
+            alert("No such user exist");
+        else {
+
+            uid = user.id;
+            $('#usernameFld').val(user.username);
+            $('#firstNameFld').val(user.firstName);
+            $('#lastNameFld').val(user.lastName);
+            $('#roleFld').val(user.role);
+            $('#passwordFld').val(user.password);
+        }
+
     }
-
-
 // check whether the name of the new user is in the database
 
     function checkUsername()
@@ -206,6 +210,16 @@
         uid = 0;
 
         findAllUsers();
+    }
+
+    //search option implemented
+
+    function searchByUsername(event)
+    {
+        var uname = $('#usernameFld').val();
+
+        userService.findUserByUsername(uname).then(loadUser);
+
     }
 
  // reset the input fields
