@@ -128,5 +128,25 @@ public class UserServices
    		 		return user1;
    	 }
     }
+    
+    @PutMapping("/api/user/reset")
+    public User resetPassword(@RequestBody User user)
+    {
+    	String contact = user.getContact();
+    	String email = user.getEmail();
+    	Optional<User> data = userRepository.findUserByContact(contact, email);
+    	if (data.isPresent())
+    	{
+    	 User users = data.get();
+    	 users.setPassword(user.getPassword());
+    	 userRepository.save(users);
+    	 return users;
+    	}
+    	else {
+    		User users = new User();
+    		users.setFirstName("Negative");
+    		return users;
+    	}
+     }
 	
 }

@@ -41,7 +41,7 @@
 
         }
 
-
+// redirects to Edit Profile Page
     function success(response)
     {
         if (response.firstName == "Negative")

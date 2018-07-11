@@ -23,22 +23,11 @@
       findAllUsers();
     }
 
-    function checkUsername()
-    {
-
-        var $usernameFld = $('#usernameFld').val();
-
-        userService.findUserByUsername($usernameFld).then(createUser);
-
-    }
-
-
-
-
     function createUser(user)
     {
 
-        if (user.firstName == "Negative") {
+        if (user.firstName == "Negative")
+        {
 
             $usernameFld = $('#usernameFld').val();
             $passwordFld = $('#passwordFld').val();
@@ -65,15 +54,7 @@
         userService.findAllUsers().then(renderUsers).then(resetForm);
     }
 
-    function resetForm()
-    {
 
-        $('#usernameFld').val('');
-        $('#firstNameFld').val('');
-        $('#lastNameFld').val('');
-        $('#passwordFld').val('');
-
-    }
     function findUserById(id)
     {
         var user = userService.findUserById(id);
@@ -86,20 +67,7 @@
         userService.deleteUser(findUserId(event))
                    .then(findAllUsers);
     }
-    function findUserId(event)
-    {
-        var position = $(event.currentTarget);
 
-        var userId = position
-                     .parent()
-                     .parent()
-                     .parent()
-                     .attr('id');
-
-
-
-        return userId;
-    }
     function selectUser(event)
     {
         var userId = findUserId(event);
@@ -108,13 +76,7 @@
     }
 
 
-    function check()
-    {
-        var $usernameFld = $('#usernameFld').val();
 
-        userService.findUserByUsername($usernameFld).then(updateUser);
-
-    }
     function updateUser(user)
     {
 
@@ -124,35 +86,7 @@
             alert("Username exist in database...Try a different name");
     }
 
-    function updateDatabase(user)
-    {
-        $usernameFld = $('#usernameFld').val();
-        $firstNameFld = $('#firstNameFld').val();
-        $lastNameFld = $('#lastNameFld').val();
-        $passwordFld = $('#passwordFld').val();
-        $roleFld = $('#roleFld').val();
 
-        var email = user.email;                  // data from database, that was not changed by the admin
-        var dateOfBirth = user.dateOfBirth;
-        var contact = user.contact;
-
-        var newUser = new User($usernameFld,$passwordFld,$firstNameFld,$lastNameFld,$roleFld,email,contact,dateOfBirth);
-
-
-        userService.updateUser(uid,newUser).then(updateStatus);
-    }
-
-    function updateStatus(user)
-    {
-        if (user.firstName == "Negative")
-            alert("No such user exist");
-        else
-            alert("User updated successfully");
-
-        uid = 0;
-
-        findAllUsers();
-    }
 
     function renderUser(user)
     {
@@ -165,7 +99,8 @@
         clone.find('.wbdv-last-name').html(user.lastName);
         clone.find('.wbdv-role').html(user.role);
         $tbody.append(clone);
-        }
+
+    }
 
     function renderUsers(users)
     {
@@ -186,8 +121,31 @@
             clone.find('.wbdv-role').html(user.role);
             $tbody.append(clone);
             }
-            }
 
+    }
+
+
+//HELPER FUNCTIONS
+
+
+//finds a user's id
+
+    function findUserId(event)
+    {
+        var position = $(event.currentTarget);
+
+        var userId = position
+            .parent()
+            .parent()
+            .parent()
+            .attr('id');
+
+
+
+        return userId;
+    }
+
+// loads a user's detail on the top screen once the edit button is clicked
 
     function loadUser(user)
     {
@@ -201,5 +159,71 @@
     }
 
 
+// check whether the name of the new user is in the database
+
+    function checkUsername()
+    {
+
+        var $usernameFld = $('#usernameFld').val();
+
+        userService.findUserByUsername($usernameFld).then(createUser);
+
+    }
+
+// check whether the updated name is in the database
+    function check()
+    {
+        var $usernameFld = $('#usernameFld').val();
+
+        userService.findUserByUsername($usernameFld).then(updateUser);
+
+    }
+
+    // updates the database once update button is clicked
+
+
+    function updateDatabase(user)
+    {
+        $usernameFld = $('#usernameFld').val();
+        $firstNameFld = $('#firstNameFld').val();
+        $lastNameFld = $('#lastNameFld').val();
+        $passwordFld = $('#passwordFld').val();
+        $roleFld = $('#roleFld').val();
+
+        var email = user.email;                  // data from database, that was not changed by the admin
+        var dateOfBirth = user.dateOfBirth;
+        var contact = user.contact;
+
+        var newUser = new User($usernameFld,$passwordFld,$firstNameFld,$lastNameFld,$roleFld,email,contact,dateOfBirth);
+
+
+        userService.updateUser(uid,newUser).then(updateStatus);
+    }
+
+    // notifies about the result of the updation
+
+    function updateStatus(user)
+    {
+        if (user.firstName == "Negative")
+            alert("No such user exist");
+        else
+            alert("User updated successfully");
+
+        uid = 0;
+
+        findAllUsers();
+    }
+
+ // reset the input fields
+
+    function resetForm()
+    {
+
+        $('#usernameFld').val('');
+        $('#firstNameFld').val('');
+        $('#lastNameFld').val('');
+        $('#passwordFld').val('');
+
+    }
 
 })();

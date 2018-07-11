@@ -1,13 +1,12 @@
 (function  () {
 
-    var user1;
-
-    $(main);
-
+    var user1;    //stores the information of the current user
     var userService = new UserServiceClient();
     var $usernameFld, $contactFld ;
     var $emailFld , $roleFld ;
     var $dobFld ;
+
+    $(main);
 
     function main ()
     {
@@ -32,19 +31,6 @@
         location.href = "http://localhost:8080/jquery/component/login/login.template.client.html";
 
     }
-
-
-
-    function getIdByUrl()
-    {
-
-        var url = document.URL;
-        var id = url.substring((url.indexOf("userid="))+7)
-        return id;
-    }
-
-
-
     function updateUser()
     {
         var userId = user1.id;
@@ -66,21 +52,36 @@
 
         userService.updateUser(userId,user)
             .then(success);
-
     }
 
-    function success(response){
+
+// HELPER FUNCTIONS
+
+
+    function getIdByUrl()
+    {
+
+        var url = document.URL;
+        var id = url.substring((url.indexOf("userid="))+7)
+        return id;
+    }
+
+    function success(response)
+    {
         if (response.firstName == "Negative")
             alert ("Problem Updating");
         else
             alert ("Successfully Updated");
     }
 
+
     function loadUser()
     {
         var userId = getIdByUrl();
         userService.findUserById(userId).then (renderUser);
     }
+
+    //loads the input fields with the information present in the database
 
     function renderUser(user)
     {

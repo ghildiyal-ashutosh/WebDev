@@ -7,6 +7,7 @@ function UserServiceClient() {
     this.findUserByUsername = findUserByUsername;
     this.register = register;
     this.logIn = logIn;
+    this.resetPassword = resetPassword;
     this.url = 'http://localhost:8080/api/user';
     var self = this;
 
@@ -103,6 +104,24 @@ function UserServiceClient() {
             }
         }).then(function (response){
             return response.json();
+        });
+
+    }
+
+    function resetPassword(credentials)
+    {
+        return fetch (self.url + '/' + 'reset', {
+            method : 'put',
+            body : JSON.stringify(credentials),
+            headers:
+                {
+                    'content-type' : 'application/json'
+                }
+        }).then(function (response)
+        {
+            return response.json();
+
+
         });
 
     }
