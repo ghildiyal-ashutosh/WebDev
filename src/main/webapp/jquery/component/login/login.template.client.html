@@ -2,43 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Log-In</title>
+    <title>LogIn</title>
+
+    <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href=
+            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="login.style.client.css" rel="stylesheet" />
+
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src = "../../services/user.service.client.js"></script>
+    <script src = "../../models/user.model.client.js"></script>
+    <script src="login.controller.client.js"></script>
 </head>
+
 <body>
+<div class="container">
+    <h1>Sign In</h1>
+    <form>
+        <div class="form-group row">
+            <label for="usernameFld"
+                   class="col-sm-2 col-form-label">
+                Username
+            </label>
+            <div class="col-sm-10">
+                <input type="text"
+                       class="form-control"
+                       id="usernameFld"
+                       placeholder="Alice">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="passwordFld"
+                   class="col-sm-2 col-form-label">
+                Password
+            </label>
+            <div class="col-sm-10">
+                <input type="password"
+                       class="form-control wbdv-password-fld"
+                       id="passwordFld"
+                       placeholder="123qwe#$%">
+            </div>
+        </div>
 
-
-<h1> LogIn </h1>
-<div>
-    <label
-         for = "usernameFld">
-        Username
-    </label>
-
-    <input
-            type ="text"
-            id = "usernameFld"
-            placeholder ="UserName" />
+    </form>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <button class="btn btn-primary btn-block"
+                    id = "signInFld">
+                Sign in
+            </button>
+            <div class="row">
+                <div class="col-6">
+                    <a href="http://localhost:8080/jquery/component/forget/forgetPassword.template.client.html">
+                        Forgot Password?
+                    </a>
+                </div>
+                <div class="col-6">
+                    <a href="http://localhost:8080/jquery/component/register/register.template.client.html" class="float-right">
+                        Sign up
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div>
 
-    <label
-        for = "passwordFld">
-        Password
-
-    </label>
-
-    <input
-            type ="password"
-            id = "passwordFld"
-            placeholder ="Password"/>
-</div>
-
-<button>
-        LogIn
-</button>
-<a href="../register/register.template.client.html">
-        Sign Up
-</a>
 </body>
 </html>

@@ -53,7 +53,7 @@
             var id1 = response.id;
 
             //  window.location = '/player_detail?username=' + name;
-            window.location = "http://localhost:8080/Jquery/components/profile/profile.template.client.html?userid="
+            window.location = "http://localhost:8080/jquery/component/profile/profile.template.client.html?userid="
                                +id1 ;
         }
     }

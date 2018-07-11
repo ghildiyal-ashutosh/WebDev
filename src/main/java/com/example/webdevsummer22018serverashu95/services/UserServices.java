@@ -61,6 +61,7 @@ public class UserServices
 			current.setPassword(newUser.getPassword());
 			current.setEmail(newUser.getEmail());
 			current.setDateOfBirth(newUser.getDateOfBirth());
+			current.setRole(newUser.getRole());
 			return userRepository.save(current);
 		}
 		
@@ -108,5 +109,24 @@ public class UserServices
 			
 		}
 	}
+	
+	
+    @PostMapping("/api/user/logIn")
+    public User login(@RequestBody User user) 
+    {
+   	 String username = user.getUsername();
+   	 String password = user.getPassword();
+   	 
+   	 Optional<User> data = userRepository.findUserByCredentials(username, password);
+   	 if (data.isPresent())
+   	 {
+   		 return data.get();
+   	 }
+   	 else {
+   		 User user1 = new User();
+   		 user1.setFirstName("Negative");
+   		 		return user1;
+   	 }
+    }
 	
 }
