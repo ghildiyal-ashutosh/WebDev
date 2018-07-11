@@ -16,7 +16,7 @@
 
         function signIn()
         {
-            location.href = "http://localhost:8080/Jquery/components/login/login.template.client.html";
+            location.href = "http://localhost:8080/jquery/component/login/login.template.client.html";
 
         }
         function register()
