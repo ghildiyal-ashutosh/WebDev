@@ -4,6 +4,7 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
+    this.findUserByUsername = findUserByUsername;
     this.url = 'http://localhost:8080/api/user';
     var self = this;
 
@@ -64,6 +65,15 @@ function UserServiceClient() {
              {
                  method : 'delete'
 
+             });
+     }
+
+     function findUserByUsername(username)
+     {
+         return fetch(self.url + '/' + 'username' + '/'+ username)
+             .then (function (response)
+             {
+                 return response.json();
              });
      }
 }

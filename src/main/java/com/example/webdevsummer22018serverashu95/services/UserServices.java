@@ -72,4 +72,22 @@ public class UserServices
 		}
 
 }
+	@GetMapping("/api/user/username/{username}")
+	public User findUserByUsername(@PathVariable ("username") String uname)
+	{
+		Optional<User> data = userRepository.findUserByUsername(uname);
+		
+		if (data.isPresent())
+		{
+			User user = data.get();
+			return user;
+		}
+		else
+		{
+			User user = new User();
+			user.setFirstName("Negative");
+			return user;
+		}
+	}
+	
 }

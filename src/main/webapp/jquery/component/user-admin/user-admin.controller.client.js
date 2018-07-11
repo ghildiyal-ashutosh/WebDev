@@ -17,7 +17,7 @@
         $updateBtn = $('.wbdv-update');
         $searchBtn =$ ('.wbdv-search');
         $createBtn.click(checkUsername);
-        $updateBtn.click(updateUser);
+        $updateBtn.click(check);
 
 
       findAllUsers();
@@ -26,29 +26,53 @@
     function checkUsername()
     {
 
-        createUser();
+        var $usernameFld = $('#usernameFld').val();
+
+        userService.findUserByUsername($usernameFld).then(createUser);
 
     }
 
 
-    function createUser()
+
+
+    function createUser(user)
     {
 
-        $usernameFld = $('#usernameFld').val();
-        $passwordFld =$('#passwordFld').val();
-        $firstNameFld = $('#firstNameFld').val();
-        $lastNameFld = $('#lastNameFld').val();
-        $roleFld = $('#roleFld').val();
+        if (user.firstName == "Negative") {
 
-        var user = new User($usernameFld,$passwordFld,$firstNameFld,$lastNameFld,$roleFld,null,null,null);
+            $usernameFld = $('#usernameFld').val();
+            $passwordFld = $('#passwordFld').val();
+            $firstNameFld = $('#firstNameFld').val();
+            $lastNameFld = $('#lastNameFld').val();
+            $roleFld = $('#roleFld').val();
 
-        userService.createUser(user)
-                    .then(renderUser);
-        alert("User Created");
+            var user = new User($usernameFld, $passwordFld, $firstNameFld, $lastNameFld, $roleFld, null, null, null);
+
+
+            userService.createUser(user)
+                .then(renderUser)
+                .then (resetForm);
+
         }
+        else
+        {
+            alert ("Username exist in database...Try some other username");
+        }
+
+    }
     function findAllUsers()
     {
-        userService.findAllUsers().then(renderUsers);
+        userService.findAllUsers().then(renderUsers).then(resetForm);
+    }
+
+    function resetForm()
+    {
+
+        $('#usernameFld').val('');
+        $('#firstNameFld').val('');
+        $('#lastNameFld').val('');
+        $('#passwordFld').val('');
+
     }
     function findUserById(id)
     {
@@ -76,10 +100,28 @@
 
         return userId;
     }
-    function selectUser() { }
-    function updateUser()
+    function selectUser(event)
     {
+        var userId = findUserId(event);
+        findUserById(userId).then(loadUser);
+
+    }
+
+
+    function check()
+    {
+        var $usernameFld = $('#usernameFld').val();
+
+        userService.findUserByUsername($usernameFld).then(updateUser);
+
+    }
+    function updateUser(user)
+    {
+
+        if (user.id == uid || user.firstName == "Negative")
         userService.findUserById(uid).then(updateDatabase);
+        else
+            alert("Username exist in database...Try a different name");
     }
 
     function updateDatabase(user)
@@ -96,6 +138,7 @@
 
         var newUser = new User($usernameFld,$passwordFld,$firstNameFld,$lastNameFld,$roleFld,email,contact,dateOfBirth);
 
+
         userService.updateUser(uid,newUser).then(updateStatus);
     }
 
@@ -106,6 +149,8 @@
         else
             alert("User updated successfully");
 
+        uid = 0;
+
         findAllUsers();
     }
 
@@ -114,15 +159,13 @@
         var clone = $userRowTemplate.clone();
         clone.attr('id', user.id);
         clone.find('.wbdv-remove').click(deleteUser);
-        clone.find('.wbdv-edit').click(editUser);
+        clone.find('.wbdv-edit').click(selectUser);
         clone.find('.wbdv-username').html(user.username);
         clone.find('.wbdv-first-name').html(user.firstName);
         clone.find('.wbdv-last-name').html(user.lastName);
         clone.find('.wbdv-role').html(user.role);
         $tbody.append(clone);
-
-
-    }
+        }
 
     function renderUsers(users)
     {
@@ -135,7 +178,7 @@
 
             clone.attr('id', user.id);
             clone.find('.wbdv-remove').click(deleteUser);
-            clone.find('.wbdv-edit').click(editUser);
+            clone.find('.wbdv-edit').click(selectUser);
 
             clone.find('.wbdv-username').html(user.username);
             clone.find('.wbdv-first-name').html(user.firstName);
@@ -143,18 +186,8 @@
             clone.find('.wbdv-role').html(user.role);
             $tbody.append(clone);
             }
-
-            console.log($tbody);
             }
-    function editUser(event)
-    {
-        var userId = findUserId(event);
 
-        console.log(userId);
-
-        findUserById(userId).then(loadUser);
-
-    }
 
     function loadUser(user)
     {
@@ -166,5 +199,7 @@
         $('#roleFld').val(user.role);
         $('#passwordFld').val(user.password);
     }
+
+
 
 })();
