@@ -17,7 +17,7 @@ import com.example.webdevsummer22018serverashu95.repositories.UserRepository;
 
 @RestController
 
-public class UserServices 
+public class UserService 
 {
 	@Autowired
 	UserRepository userRepository;
@@ -54,15 +54,14 @@ public class UserServices
 		if (data.isPresent())
 		{
 			User current = data.get();
-			current.setContact(newUser.getContact());
+			
 			current.setUsername(newUser.getUsername());
 			current.setFirstName(newUser.getFirstName());
 			current.setLastName(newUser.getLastName());
 			current.setPassword(newUser.getPassword());
-			current.setEmail(newUser.getEmail());
-			current.setDateOfBirth(newUser.getDateOfBirth());
 			current.setRole(newUser.getRole());
-			return userRepository.save(current);
+			userRepository.save(current);
+			return current;
 		}
 		
 		else
@@ -128,6 +127,33 @@ public class UserServices
    		 		return user1;
    	 }
     }
+    
+    
+	@PutMapping ("api/user/updateProfile/{userId}")
+	public User updateProfile(@PathVariable ("userId") int userId, @RequestBody User newUser)
+	{
+		Optional<User> data = userRepository.findById(userId);
+		
+		if (data.isPresent())
+		{
+			User current = data.get();
+			
+			current.setContact(newUser.getContact());
+			current.setEmail(newUser.getEmail());
+			current.setDateOfBirth(newUser.getDateOfBirth());
+			current.setRole(newUser.getRole());
+			userRepository.save(current);
+			return current;
+		}
+		else
+		{
+			User user = new User();
+			user.setFirstName("Negative");
+			return user;
+		}
+
+}
+    
     
     @PutMapping("/api/user/reset")
     public User resetPassword(@RequestBody User user)

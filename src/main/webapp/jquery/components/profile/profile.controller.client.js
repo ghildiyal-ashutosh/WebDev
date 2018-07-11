@@ -20,38 +20,31 @@
 
         loadUser();
 
-        $('.update').click(updateUser);
+        $('.update').click(updateProfile);
 
         $('#signOut').click (signOut);
 
     }
 
-    function  signOut() {
-
-        location.href = "http://localhost:8080/jquery/component/login/login.template.client.html";
+    function  signOut()
+    {
+        location.href = "http://localhost:8080/jquery/components/login/login.template.client.html";
 
     }
-    function updateUser()
+    function updateProfile()
     {
         var userId = user1.id;
-        var password = user1.password;
-        var firstName = user1.firstName;
-        var lastName = user1.lastName;
 
-
-
-        $usernameFld = $('#usernameFld').val();
         $contactFld = $('#contactFld').val();
         $emailFld = $('#emailFld').val();
         $roleFld = $('#roleFld').val();
         $dobFld = $('#dobFld').val();
 
-        var user = new User($usernameFld, password,
-            firstName,lastName,$roleFld,$emailFld,$contactFld,$dobFld);
+        var user = new User("", "", "","",$roleFld,$emailFld,$contactFld,$dobFld);
 
 
-        userService.updateUser(userId,user)
-            .then(success);
+        userService.updateProfile(userId,user)
+                    .then(success);
     }
 
 

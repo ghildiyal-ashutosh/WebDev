@@ -15,6 +15,7 @@
         $userRowTemplate = $('.wbdv-user');
         $createBtn =  $('.wbdv-create');
         $updateBtn = $('.wbdv-update');
+
         $searchBtn =$ ('.wbdv-search');
         $createBtn.click(checkUsername);
         $updateBtn.click(check);
@@ -75,19 +76,14 @@
 
     }
 
-
-
     function updateUser(user)
     {
 
         if (user.id == uid || user.firstName == "Negative")
-        userService.findUserById(uid).then(updateDatabase);
+             $(updateDatabase);
         else
             alert("Username exist in database...Try a different name");
     }
-
-
-
     function renderUser(user)
     {
         var clone = $userRowTemplate.clone();
@@ -182,7 +178,7 @@
     // updates the database once update button is clicked
 
 
-    function updateDatabase(user)
+    function updateDatabase()
     {
         $usernameFld = $('#usernameFld').val();
         $firstNameFld = $('#firstNameFld').val();
@@ -190,11 +186,9 @@
         $passwordFld = $('#passwordFld').val();
         $roleFld = $('#roleFld').val();
 
-        var email = user.email;                  // data from database, that was not changed by the admin
-        var dateOfBirth = user.dateOfBirth;
-        var contact = user.contact;
 
-        var newUser = new User($usernameFld,$passwordFld,$firstNameFld,$lastNameFld,$roleFld,email,contact,dateOfBirth);
+
+        var newUser = new User($usernameFld,$passwordFld,$firstNameFld,$lastNameFld,$roleFld);
 
 
         userService.updateUser(uid,newUser).then(updateStatus);

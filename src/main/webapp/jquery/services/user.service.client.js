@@ -7,6 +7,7 @@ function UserServiceClient() {
     this.findUserByUsername = findUserByUsername;
     this.register = register;
     this.logIn = logIn;
+    this.updateProfile = updateProfile;
     this.resetPassword = resetPassword;
     this.url = 'http://localhost:8080/api/user';
     var self = this;
@@ -48,6 +49,7 @@ function UserServiceClient() {
              });
      }
 
+     //same function will be used for updating profile (UpdateProfile)
    function updateUser(userId, user)
    {
        return fetch (self.url+'/'+userId,
@@ -62,6 +64,7 @@ function UserServiceClient() {
            return response.json();
        });
    }
+
      function deleteUser(userId, callback)
      {
          return fetch (self.url + '/' + userId,
@@ -106,6 +109,22 @@ function UserServiceClient() {
             return response.json();
         });
 
+    }
+
+
+    function updateProfile(userId, user)
+    {
+        return fetch (self.url+'/'+'updateProfile'+ '/'+ userId,
+            {
+                method : 'put',
+                body : JSON.stringify(user),
+                headers:
+                    { 'content-type' : 'application/json'}
+
+            }).then (function (response)
+        {
+            return response.json();
+        });
     }
 
     function resetPassword(credentials)

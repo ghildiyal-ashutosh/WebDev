@@ -14,11 +14,6 @@
 
         }
 
-        function signIn()
-        {
-            location.href = "http://localhost:8080/jquery/component/login/login.template.client.html";
-
-        }
         function register()
         {
 
@@ -35,17 +30,23 @@
             }
             else
             {
-                window.alert("Password Doesnot Match... Try Again");
+                window.alert(" Registration Failed !!! Password Do not Match... Try Again");
             }
 
 
         }
 
+    function signIn()
+    {
+        location.href = "http://localhost:8080/jquery/components/login/login.template.client.html";
+
+    }
+
 // redirects to Edit Profile Page
     function success(response)
     {
         if (response.firstName == "Negative")
-            window.alert("Cant register, username exist in the database");
+            window.alert("Registration Failed !!! Username exists in the database");
         else {
             window.alert("you have been added successfully");
 
@@ -53,7 +54,7 @@
             var id1 = response.id;
 
             //  window.location = '/player_detail?username=' + name;
-            window.location = "http://localhost:8080/jquery/component/profile/profile.template.client.html?userid="
+            window.location = "http://localhost:8080/jquery/components/profile/profile.template.client.html?userid="
                                +id1 ;
         }
     }

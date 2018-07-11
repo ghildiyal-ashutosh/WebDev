@@ -16,16 +16,17 @@
 
     }
 
-    function logIn(response) {
+    function logIn(response)
+    {
 
         if (response.firstName == "Negative")
         {
-            alert("Incorrect Username or Password...Try Again");
+            alert(" LogIn Failed !!! Incorrect Username or Password...Try Again");
         }
         else
         {
             userId = response.id;
-            window.location = "http://localhost:8080/jquery/component/profile/profile.template.client.html?userid=" +userId;
+            window.location = "http://localhost:8080/jquery/components/profile/profile.template.client.html?userid=" +userId;
         }
 
     }
@@ -33,7 +34,8 @@
 
 
     // checks whether the user credentials are authentic or not
-    function checkUser() {
+    function checkUser()
+    {
 
         var username = $usernameFld.val();
         var password = $passwordFld.val();
