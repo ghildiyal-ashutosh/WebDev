@@ -1,0 +1,28 @@
+@import url('https://netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css');
+
+
+.fa:hover{
+    cursor: pointer;
+    font-size: 40px;
+
+}
+
+#title {
+    color: darkblue;
+    font-family: Carlito;
+}
+
+.heading{
+    color: black;
+    font-family: "Abyssinica SIL";
+    font-size: xx-large;
+}
+.content{
+    color: mediumblue;
+    font-family: Caladea;
+    font-size: x-large;
+}
+
+body {
+    background-color: Gainsboro;
+}

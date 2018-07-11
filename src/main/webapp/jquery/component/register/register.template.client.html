@@ -1,59 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Registration</title>
+
+
+    <link href="register.style.client.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src = "register.controller.client.js"></script>
+
+    <script src = "../../services/user.service.client.js"></script>
+    <script src = "../../models/user.model.client.js"> </script>
+
 </head>
+
 <body>
 
-<h1> Register </h1>
+<div class="container">
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
 
+    <label
+            for="usernameFld">
+        <b>Username</b>
+    </label>
+    <input
+            type="text"
+            placeholder="Enter Username"
+            id="usernameFld"/>
 
-    <div>
-        <label
-                for = "usernameFld">
-                 Username
-        </label>
+    <label
+            for="passwordFld">
+        <b>Password</b>
+    </label>
+    <input
+            type="password"
+            placeholder="Enter Password"
+            id = "passwordFld">
 
-        <input
-                type ="text"
-                id = "usernameFld"
-                placeholder ="UserName" />
-    </div>
+    <label
+            for="verifyPasswordFld">
+        <b>Verify Password</b>
+    </label>
+    <input
+            type="password"
+            placeholder="Repeat Password"
+            id = verifyPasswordFld>
+    <hr>
 
-    <div>
-
-        <label
-                for = "passwordFld">
-                 Password
-
-        </label>
-
-        <input
-                type ="password"
-                id = "passwordFld"
-                placeholder ="Password"/>
-    </div>
-
-
-    <div>
-        <label
-                for = "cpasswordFld">
-                Confirm-Password
-
-        </label>
-
-        <input
-                type ="password"
-                id = "cpasswordFld"
-                placeholder ="Validate-Password"/>
-    </div>
-
-    <button>
-        SignUp
+    <button
+            type="submit"
+            class="registerbtn"
+            id ="register">Register
+    </button>
+    <br>
+    <button
+            type="submit"
+            class="registerbtn"
+            id ="signIn" >SignIn
     </button>
 
-    <a href="../login/login.template.client.html"> LogIn </a>
+
+</div>
 
 
 

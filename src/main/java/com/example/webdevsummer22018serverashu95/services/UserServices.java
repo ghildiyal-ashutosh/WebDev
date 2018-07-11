@@ -90,4 +90,23 @@ public class UserServices
 		}
 	}
 	
+	
+	@PostMapping("/api/user/register")
+	public User register(@RequestBody User user) { 
+		
+		String name = user.getUsername();
+		
+		Optional<User> data = userRepository.findUserByUsername(name);
+		if (data.isPresent())
+		{
+			User user1 = new User();
+			user1.setFirstName("Negative");
+			return user1;
+		}
+		else {
+			return (userRepository.save(user));
+			
+		}
+	}
+	
 }
