@@ -38,7 +38,7 @@
 
     function signIn()
     {
-        location.href = "http://localhost:8080/jquery/components/login/login.template.client.html";
+        location.href = "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html";
 
     }
 
@@ -54,7 +54,7 @@
             var id1 = response.id;
 
             //  window.location = '/player_detail?username=' + name;
-            window.location = "http://localhost:8080/jquery/components/profile/profile.template.client.html?userid="
+            window.location = "https://webdev-2.herokuapp.com/jquery/components/profile/profile.template.client.html?userid="
                                +id1 ;
         }
     }

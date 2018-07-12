@@ -9,7 +9,8 @@ function UserServiceClient() {
     this.logIn = logIn;
     this.updateProfile = updateProfile;
     this.resetPassword = resetPassword;
-    this.url = 'http://localhost:8080/api/user';
+  //  this.url = 'http://localhost:8080/api/user';
+    this.url = 'https://webdev-2.herokuapp.com/api/user'
     var self = this;
 
 

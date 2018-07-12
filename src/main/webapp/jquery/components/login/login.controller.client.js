@@ -26,7 +26,7 @@
         else
         {
             userId = response.id;
-            window.location = "http://localhost:8080/jquery/components/profile/profile.template.client.html?userid=" +userId;
+            window.location = "https://webdev-2.herokuapp.com/jquery/components/profile/profile.template.client.html?userid=" +userId;
         }
 
     }
