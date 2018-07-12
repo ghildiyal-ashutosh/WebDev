@@ -30,7 +30,7 @@
             }
             else
             {
-                window.alert(" Registration Failed !!! Password Do not Match... Try Again");
+                window.alert(" Registration Failed !!! Password Do not Match.. Try Again");
             }
 
 
