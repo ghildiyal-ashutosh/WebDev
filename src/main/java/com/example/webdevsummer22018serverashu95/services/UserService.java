@@ -3,6 +3,8 @@ package com.example.webdevsummer22018serverashu95.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -92,7 +94,8 @@ public class UserService
 	
 	
 	@PostMapping("/api/user/register")
-	public User register(@RequestBody User user) { 
+	public User register(@RequestBody User user , HttpSession session) 
+	{ 
 		
 		String name = user.getUsername();
 		
@@ -104,14 +107,24 @@ public class UserService
 			return user1;
 		}
 		else {
-			return (userRepository.save(user));
+			
+			User currentUser = userRepository.save(user);
+			session.setAttribute("currentUser", currentUser);
+			return currentUser;
 			
 		}
 	}
 	
+	@GetMapping("/api/user/checkCurrentUser")
+	public Optional<User> checkLogIn(HttpSession session)
+	{
+		User currentUser = (User) session.getAttribute("currentUser");
+		return (userRepository.findById(currentUser.getId()));
+	}
+	
 	
     @PostMapping("/api/user/logIn")
-    public User login(@RequestBody User user) 
+    public User login(@RequestBody User user, HttpSession session) 
     {
    	 String username = user.getUsername();
    	 String password = user.getPassword();
@@ -119,7 +132,9 @@ public class UserService
    	 Optional<User> data = userRepository.findUserByCredentials(username, password);
    	 if (data.isPresent())
    	 {
+   		 session.setAttribute("currentUser", data.get());
    		 return data.get();
+   		 
    	 }
    	 else {
    		 User user1 = new User();
@@ -128,6 +143,12 @@ public class UserService
    	 }
     }
     
+    @PostMapping("/api/user/logOut")
+    public void logout (HttpSession session) 
+    {
+    	session.invalidate();
+    }
+
     
 	@PutMapping ("api/user/updateProfile/{userId}")
 	public User updateProfile(@PathVariable ("userId") int userId, @RequestBody User newUser)

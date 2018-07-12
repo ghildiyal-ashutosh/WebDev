@@ -9,7 +9,9 @@ function UserServiceClient() {
     this.logIn = logIn;
     this.updateProfile = updateProfile;
     this.resetPassword = resetPassword;
-  //  this.url = 'http://localhost:8080/api/user';
+    this.checkCurrentUser = checkCurrentUser;
+    this.signOut = signOut;
+  // this.url = 'http://localhost:8080/api/user';
     this.url = 'https://webdev-2.herokuapp.com/api/user'
     var self = this;
 
@@ -91,7 +93,8 @@ function UserServiceClient() {
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
-            }
+            },
+            'credentials' : 'include'
         }).then(function (response) {
             return response.json()
         });
@@ -103,6 +106,7 @@ function UserServiceClient() {
         return fetch(self.url+'/'+'logIn', {
             method: 'post',
             body: JSON.stringify(userCred),
+            credentials : 'include',
             headers: {
                 'content-type': 'application/json'
             }
@@ -119,6 +123,7 @@ function UserServiceClient() {
             {
                 method : 'put',
                 body : JSON.stringify(user),
+                credentials : 'include',
                 headers:
                     { 'content-type' : 'application/json'}
 
@@ -144,5 +149,25 @@ function UserServiceClient() {
 
         });
 
+    }
+
+    function checkCurrentUser()
+    {
+        return fetch(self.url + '/' + 'checkCurrentUser',
+            {
+                credentials : 'include'
+            }).then (function (response)
+        {
+            return response.json();
+        });
+
+    }
+
+    function signOut()
+    {
+        return fetch (self.url + '/' + 'logOut',
+            {
+                method :'post'
+            });
     }
 }

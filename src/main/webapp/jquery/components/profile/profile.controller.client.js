@@ -17,8 +17,8 @@
         $roleFld = $('#roleFld');
         $dobFld = $('#dobFld');
 
+         userService.checkCurrentUser().then(renderUser);
 
-        loadUser();
 
         $('.update').click(updateProfile);
 
@@ -28,7 +28,10 @@
 
     function  signOut()
     {
-        location.href = "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html";
+       // location.href = "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html";
+        userService.signOut()
+                    .then(location.href =  "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html");
+
 
     }
     function updateProfile()
@@ -50,15 +53,6 @@
 
 // HELPER FUNCTIONS
 
-
-    function getIdByUrl()
-    {
-
-        var url = document.URL;
-        var id = url.substring((url.indexOf("userid="))+7)
-        return id;
-    }
-
     function success(response)
     {
         if (response.firstName == "Negative")
@@ -68,11 +62,7 @@
     }
 
 
-    function loadUser()
-    {
-        var userId = getIdByUrl();
-        userService.findUserById(userId).then (renderUser);
-    }
+
 
     //loads the input fields with the information present in the database
 
@@ -86,6 +76,16 @@
         user1 = user;
 
     }
+
+
+    function getIdByUrl()
+    {
+
+        var url = document.URL;
+        var id = url.substring((url.indexOf("userid="))+7)
+        return id;
+    }
+
 
 
 }) ();
