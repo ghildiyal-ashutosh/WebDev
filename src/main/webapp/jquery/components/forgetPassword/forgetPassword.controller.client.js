@@ -21,7 +21,7 @@
 
     function signIn()
     {
-        location.href = "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html";
+        window.location = "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html";
     }
 
     function resetPassword()
