@@ -21,7 +21,7 @@
 
     function signIn()
     {
-        location.href = "http://localhost:8080/jquery/components/login/login.template.client.html";
+        location.href = "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html";
     }
 
     function resetPassword()
