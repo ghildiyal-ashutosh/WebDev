@@ -11,7 +11,7 @@ function UserServiceClient() {
     this.resetPassword = resetPassword;
     this.checkCurrentUser = checkCurrentUser;
     this.signOut = signOut;
-  // this.url = 'http://localhost:8080/api/user';
+  //  this.url = 'http://localhost:8080/api/user';
     this.url = 'https://webdev-2.herokuapp.com/api/user'
     var self = this;
 
@@ -162,12 +162,13 @@ function UserServiceClient() {
         });
 
     }
-
     function signOut()
     {
         return fetch (self.url + '/' + 'logOut',
             {
                 method :'post'
-            });
+            }).then(function (response) {
+            return response.json();
+        });
     }
 }

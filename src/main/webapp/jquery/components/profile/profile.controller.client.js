@@ -30,7 +30,8 @@
     {
        // location.href = "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html";
         userService.signOut()
-                    .then(location.href =  "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html");
+                    .then (redirect);
+        //(window.location.href =  "http://localhost:8080/jquery/components/login/login.template.client.html");
 
 
     }
@@ -78,13 +79,26 @@
     }
 
 
-    function getIdByUrl()
+    function redirect(response)
+    {
+        if (response)
+        {
+           // var url = "http://localhost:8080/jquery/components/login/login.template.client.html";
+            var url ="https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html"
+            window.location.href = url
+        }
+
+    }
+
+
+ /**   function getIdByUrl()
     {
 
         var url = document.URL;
         var id = url.substring((url.indexOf("userid="))+7)
         return id;
     }
+    */
 
 
 
