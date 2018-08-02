@@ -1,10 +1,13 @@
 package com.example.webdevsummer22018serverashu95.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,6 +19,9 @@ public class Lesson
 	private int id;
 	private String title;
 	
+	@OneToMany(mappedBy = "lesson",orphanRemoval=true)
+	private List<Widget> widgets;
+	
 	@ManyToOne
 	@JsonIgnore
 	private Module module;
@@ -23,6 +29,16 @@ public class Lesson
 	public int getId() 
 	{
 		return id;
+	}
+
+	public List<Widget> getWidgets() 
+	{
+		return widgets;
+	}
+
+	public void setWidgets(List<Widget> widgets) 
+	{
+		this.widgets = widgets;
 	}
 
 	public void setId(int id) 

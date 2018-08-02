@@ -157,7 +157,8 @@ public class WidgetService
 				   widget.setTitle(newWidget.getTitle());
 				   widget.setWidgetType(newWidget.getWidgetType());
 				   
-				   return (widgetRepository.save(widget));
+				   widgetRepository.save(widget);
+				   return widget;
 				}
 		
 		return new Widget();
@@ -166,6 +167,7 @@ public class WidgetService
 	@DeleteMapping("api/widget/{widgetId}")
 	public void deleteWidget(@PathVariable ("widgetId") int widgetId)
 	{
+		
 		widgetRepository.deleteById(widgetId);
 		
 	}
