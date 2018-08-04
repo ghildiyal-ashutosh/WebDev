@@ -1,8 +1,10 @@
 package com.example.webdevsummer22018serverashu95.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -83,21 +85,39 @@ public class WidgetService
 		            }
 					List<Widget> savedWidget = new ArrayList<Widget>();
 					
+					Set<String> titles = new HashSet<String>();
+					
 					for (Widget widget: widgetList)
 					{
+						if (titles.contains(widget.getTitle()))
+						{
+					          List<Widget> arr = new ArrayList<Widget>();
+					          
+					          Widget w = new Widget();
+					          w.setTitle("Negative");
+					          arr.add(w);
+					          return arr;
+					      }
+						
+				else
+				{
 						widget.setLesson(l);
 						widgetRepository.save(widget);
 						savedWidget.add(widget);
+						titles.add(widget.getTitle());
 						
-					}
-					
-					return savedWidget;
+				}
 					
 					
 				}
+					return savedWidget;
+				}
+				else
+				{
 				return new ArrayList <Widget>();
-				
 			}
+			}
+			
 			else
 			{
 			return new ArrayList<Widget>();
