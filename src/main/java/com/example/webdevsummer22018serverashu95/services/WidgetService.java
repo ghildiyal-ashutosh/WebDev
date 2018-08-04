@@ -93,9 +93,9 @@ public class WidgetService
 						{
 					          List<Widget> arr = new ArrayList<Widget>();
 					          
-					          Widget w = new Widget();
-					          w.setTitle("Negative");
-					          arr.add(w);
+					          
+					          widget.setText("Negative");
+					          arr.add(widget);
 					          return arr;
 					      }
 						
