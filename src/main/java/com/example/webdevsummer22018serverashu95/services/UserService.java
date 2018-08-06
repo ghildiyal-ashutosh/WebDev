@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ import com.example.webdevsummer22018serverashu95.models.User;
 import com.example.webdevsummer22018serverashu95.repositories.UserRepository;
 
 @RestController
-
+@CrossOrigin(origins = "*", maxAge = 999999999)
 public class UserService 
 {
 	@Autowired

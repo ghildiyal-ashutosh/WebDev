@@ -38,8 +38,8 @@
 
     function signIn()
     {
-      //  location.href = "http://localhost:8080/jquery/components/login/login.template.client.html";
-       location.href = "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html";
+       location.href = "http://localhost:8080/jquery/components/login/login.template.client.html";
+     //  location.href = "https://webdev-2.herokuapp.com/jquery/components/login/login.template.client.html";
 
     }
 
@@ -49,13 +49,13 @@
         if (response.firstName == "Negative")
             window.alert("Registration Failed !!! Username exists in the database");
         else {
-           // window.location = "http://localhost:8080/jquery/components/profile/profile.template.client.html"
+            window.location = "http://localhost:8080/jquery/components/profile/profile.template.client.html"
 //            window.alert("you have been added successfully");
 
 
             //  window.location = '/player_detail?username=' + name;
 
-            window.location = "https://webdev-2.herokuapp.com/jquery/components/profile/profile.template.client.html"
+         //   window.location = "https://webdev-2.herokuapp.com/jquery/components/profile/profile.template.client.html"
 
         }
     }

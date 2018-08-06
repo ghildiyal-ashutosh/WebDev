@@ -12,6 +12,8 @@
         $passwordFld = $('#passwordFld');
         userService = new UserServiceClient();
 
+        userService.signOut();
+
         $('#signInFld').click(checkUser);
 
     }
@@ -26,8 +28,8 @@
         else
         {
           //  userId = response.id;
-           window.location = "https://webdev-2.herokuapp.com/jquery/components/profile/profile.template.client.html"
-           // window.location = "http://localhost:8080/jquery/components/profile/profile.template.client.html"
+         //  window.location = "https://webdev-2.herokuapp.com/jquery/components/profile/profile.template.client.html"
+            window.location = "http://localhost:8080/jquery/components/profile/profile.template.client.html"
 
         }
 
