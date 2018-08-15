@@ -29,8 +29,16 @@ public class Widget
 		private String link;                   //Link,Image
 		private String layout;                 //List
 		private int size;                      //Heading
+		private boolean visibility;
 		
-		
+		public boolean isVisibility() 
+		{
+			return visibility;
+		}
+		public void setVisibility(boolean visibility)
+		{
+			this.visibility = visibility;
+		}
 		public Lesson getLesson() 
 		{
 			return lesson;
