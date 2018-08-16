@@ -102,7 +102,7 @@ public class WidgetService
 				else
 				{
 						widget.setLesson(l);
-						widget.setVisibility(true);
+						
 						widgetRepository.save(widget);
 						savedWidget.add(widget);
 						titles.add(widget.getTitle());
