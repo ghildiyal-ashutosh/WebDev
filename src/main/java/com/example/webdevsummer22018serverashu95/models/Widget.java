@@ -30,6 +30,9 @@ public class Widget
 		private String layout;                 //List
 		private int size;                      //Heading
 		private boolean visibility;
+
+
+
 		
 		public boolean isVisibility() 
 		{
