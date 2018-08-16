@@ -36,10 +36,12 @@ public class Widget
 		
 		public boolean isVisibility() 
 		{
+			
 			return visibility;
 		}
 		public void setVisibility(boolean visibility)
 		{
+			
 			this.visibility = visibility;
 		}
 		public Lesson getLesson() 
