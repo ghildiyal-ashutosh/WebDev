@@ -34,7 +34,7 @@ public class Widget
 
 
 		
-		public boolean isVisibility() 
+		public boolean getVisibility() 
 		{
 			
 			return visibility;

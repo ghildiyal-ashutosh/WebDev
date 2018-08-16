@@ -179,6 +179,7 @@ public class WidgetService
 				   widget.setText(newWidget.getText());
 				   widget.setTitle(newWidget.getTitle());
 				   widget.setWidgetType(newWidget.getWidgetType());
+				   widget.setVisibility(newWidget.getVisibility());
 				   
 				   widgetRepository.save(widget);
 				   return widget;
@@ -194,5 +195,6 @@ public class WidgetService
 		widgetRepository.deleteById(widgetId);
 		
 	}
+
 	
 }
