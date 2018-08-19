@@ -13,15 +13,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Lesson 
+
 {
+	
+	@OneToMany(mappedBy = "lesson",orphanRemoval=true)
+	private List<Widget> widgets;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String title;
 	
 	@OneToMany(mappedBy = "lesson",orphanRemoval=true)
-	private List<Widget> widgets;
+	private List<Topic> topics;
 	
+	
+	public List<Topic> getTopics() 
+	{
+		return topics;
+	}
+
+	public void setTopics(List<Topic> topics) 
+	{
+		this.topics = topics;
+	}
+
+	
+
 	@ManyToOne
 	@JsonIgnore
 	private Module module;
